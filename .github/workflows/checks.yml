@@ -1,0 +1,36 @@
+name: MiniLedger checks
+on:
+  push:
+  pull_request:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: miniledger
+          POSTGRES_PASSWORD: miniledger
+          POSTGRES_DB: miniledger_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U miniledger"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql://miniledger:miniledger@localhost:5432/miniledger_test
+      JWT_SECRET: ci-only-not-a-real-secret-12345678901234567890
+      BUSINESS_TIMEZONE: Asia/Kolkata
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run test:integration
+      - run: npm run build:api

@@ -1,0 +1,24 @@
+{
+  "expo": {
+    "name": "MiniLedger",
+    "slug": "miniledger",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": { "backgroundColor": "#F7F6F2" },
+    "ios": { "supportsTablet": true, "bundleIdentifier": "com.miniledger.app" },
+    "android": { "package": "com.miniledger.app" },
+    "plugins": [
+      "expo-secure-store",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Choose a receipt photo to attach to your loan entry.",
+          "cameraPermission": false,
+          "microphonePermission": false
+        }
+      ]
+    ],
+    "web": { "name": "MiniLedger", "bundler": "metro" }
+  }
+}

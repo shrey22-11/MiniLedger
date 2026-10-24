@@ -1,0 +1,10 @@
+node_modules
+.local
+dist
+mobile/dist
+mobile/.expo
+package-lock.json
+backend/uploads
+docs/screenshots
+*.env
+.env*

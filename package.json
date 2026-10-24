@@ -1,0 +1,27 @@
+{
+  "name": "miniledger",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "mobile"
+  ],
+  "scripts": {
+    "dev:api": "npm run dev --workspace backend",
+    "dev:app": "npm run start --workspace mobile",
+    "web": "npm run web --workspace mobile",
+    "db:migrate": "npm run db:migrate --workspace backend",
+    "typecheck": "npm run typecheck --workspaces",
+    "test": "npm run test --workspace backend",
+    "test:integration": "npm run test:integration --workspace backend",
+    "build:api": "npm run build --workspace backend",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "engines": {
+    "node": ">=22.13"
+  },
+  "devDependencies": {
+    "prettier": "^3.9.10"
+  }
+}
